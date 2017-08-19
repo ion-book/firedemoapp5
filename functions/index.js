@@ -54,3 +54,19 @@ function sendWelcomeEmail(email, displayName) {
       console.log('Correo nuevo enviado:', email);
     });
   }
+
+// Enviar correo de despedida.
+
+function sendGoodbyEmail(email, displayName) {
+    const mailOptions = {
+      from: `${APP_NAME} <noreply@firebase.com>`,
+      to: email
+    };
+  
+    // El usuario se desuscribio
+    mailOptions.subject = `Chao!`;
+    mailOptions.text = `Hola ${displayName || ''}!, Confirmamos que hemos borrado tu cuenta de ${APP_NAME}.`;
+    return mailTransport.sendMail(mailOptions).then(() => {
+      console.log('Correo de borrado enviado:', email);
+    });
+  }
